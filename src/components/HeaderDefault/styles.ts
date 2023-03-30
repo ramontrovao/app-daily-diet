@@ -17,6 +17,7 @@ export const ProfileIcon = styled.Image`
   width: 40px;
   height: 40px;
 
-  border: 3px solid ${({ theme: { COLORS } }) => COLORS.BLACK};
+  border-width: 3px;
+  border-color: ${({ theme: { COLORS } }) => COLORS.BLACK};
   border-radius: 999px;
 `;

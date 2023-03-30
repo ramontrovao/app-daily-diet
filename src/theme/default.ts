@@ -20,8 +20,8 @@ export const Theme = {
     BLACK: "#000",
   },
   FONT_FAMILY: {
-    REGULAR: "Regular400",
-    BOLD: "Bold700",
+    REGULAR: "Nunito_400Regular",
+    BOLD: "Nunito_700Bold",
   },
   FONT_SIZE: {
     SM: "12px",

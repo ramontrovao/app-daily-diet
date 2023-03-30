@@ -4,7 +4,7 @@ type PercentContainerProps = {
   variant: "positive" | "negative";
 };
 
-export const PercentContainer = styled.View<PercentContainerProps>`
+export const PercentContainer = styled.TouchableOpacity<PercentContainerProps>`
   ${({ theme: { COLORS }, variant }) => css`
     width: 100%;
     padding: 16px 20px;
