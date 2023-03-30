@@ -1,10 +1,10 @@
-import { Text } from "react-native";
+import { HeaderDefault } from "@components/HeaderDefault";
 import { HomeContainer } from "./styles";
 
 export const Home = () => {
   return (
     <HomeContainer>
-      <Text>Home</Text>
+      <HeaderDefault />
     </HomeContainer>
   );
 };

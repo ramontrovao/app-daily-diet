@@ -19,4 +19,16 @@ export const Theme = {
     WHITE: "#FFF",
     BLACK: "#000",
   },
+  FONT_FAMILY: {
+    REGULAR: "Regular400",
+    BOLD: "Bold700",
+  },
+  FONT_SIZE: {
+    SM: "12px",
+    XSM: "14px",
+    M: "16px",
+    XM: "18px",
+    L: "24px",
+    XL: "32PX",
+  },
 } as const;
