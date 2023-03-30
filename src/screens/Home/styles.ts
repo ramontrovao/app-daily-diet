@@ -5,3 +5,8 @@ export const HomeContainer = styled.SafeAreaView`
 
   padding: 35px 15px;
 `;
+
+export const MealsContainer = styled.View`
+  margin-top: 25px;
+  gap: 10px;
+`;
