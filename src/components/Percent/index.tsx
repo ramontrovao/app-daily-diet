@@ -1,3 +1,4 @@
+import { Text } from "@components/Text";
 import { TouchableOpacityProps } from "react-native";
 import * as S from "./styles";
 
@@ -8,8 +9,20 @@ type PercentProps = {
 export const Percent = ({ variant = "positive", ...rest }: PercentProps) => {
   return (
     <S.PercentContainer variant={variant} {...rest}>
-      <S.PercentTitle>XX,YY%</S.PercentTitle>
-      <S.PercentSubtitle>das refeições dentro da dieta</S.PercentSubtitle>
+      <Text
+        content="90,86%"
+        color="BLACK"
+        fontFamily="BOLD"
+        fontSize="XL"
+        fontWeight="bold"
+      />
+
+      <Text
+        content="90,86%"
+        color="GRAY_3"
+        fontFamily="REGULAR"
+        fontSize="XSM"
+      />
     </S.PercentContainer>
   );
 };

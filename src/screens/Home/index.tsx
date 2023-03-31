@@ -1,5 +1,5 @@
 import { Button } from "@components/Button";
-import { HeaderDefault } from "@components/HeaderDefault";
+import { HeaderProfile } from "@components/HeaderProfile";
 import { MealCard } from "@components/MealCard";
 import { Percent } from "@components/Percent";
 import { Text } from "@components/Text";
@@ -8,7 +8,7 @@ import * as S from "./styles";
 export const Home = () => {
   return (
     <S.HomeContainer>
-      <HeaderDefault />
+      <HeaderProfile />
       <Percent />
 
       <S.MealsContainer>

@@ -1,9 +1,11 @@
 import styled from "styled-components/native";
 
 export const HomeContainer = styled.ScrollView`
+  padding: 35px 15px;
+
   flex: 1;
 
-  padding: 35px 15px;
+  background: ${({ theme: { COLORS } }) => COLORS.GRAY_7};
 `;
 
 export const MealsContainer = styled.View`

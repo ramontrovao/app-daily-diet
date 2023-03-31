@@ -19,20 +19,3 @@ export const PercentContainer = styled.TouchableOpacity<PercentContainerProps>`
     border-radius: 8px;
   `}
 `;
-
-export const PercentTitle = styled.Text`
-  ${({ theme: { COLORS, FONT_SIZE, FONT_FAMILY } }) => css`
-    font-size: ${FONT_SIZE.XL};
-    font-family: ${FONT_FAMILY.BOLD};
-    font-weight: bold;
-    color: ${COLORS.BLACK};
-  `}
-`;
-
-export const PercentSubtitle = styled.Text`
-  ${({ theme: { COLORS, FONT_SIZE, FONT_FAMILY } }) => css`
-    font-size: ${FONT_SIZE.XSM};
-    font-family: ${FONT_FAMILY.BOLD};
-    color: ${COLORS.GRAY_3};
-  `}
-`;
