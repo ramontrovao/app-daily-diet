@@ -7,5 +7,6 @@ export type TextDTO = {
   color: keyof typeof COLORS;
   fontSize: keyof typeof FONT_SIZE;
   fontFamily: keyof typeof FONT_FAMILY;
+  paddingRight?: number;
   fontWeight?: number | "bold";
 } & TextProps;

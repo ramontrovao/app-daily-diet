@@ -1,16 +1,17 @@
 import { Button } from "@components/Button";
 import { HeaderDefault } from "@components/HeaderDefault";
+import { MealCard } from "@components/MealCard";
 import { Percent } from "@components/Percent";
 import { Text } from "@components/Text";
-import { HomeContainer, MealsContainer } from "./styles";
+import * as S from "./styles";
 
 export const Home = () => {
   return (
-    <HomeContainer>
+    <S.HomeContainer>
       <HeaderDefault />
       <Percent />
 
-      <MealsContainer>
+      <S.MealsContainer>
         <Text
           color="GRAY_1"
           fontSize="M"
@@ -19,7 +20,18 @@ export const Home = () => {
         />
 
         <Button icon="add" text="Nova refeição" />
-      </MealsContainer>
-    </HomeContainer>
+      </S.MealsContainer>
+
+      <S.DailyContainer>
+        <Text
+          color="BLACK"
+          fontSize="XM"
+          fontFamily="BOLD"
+          content="30.03.23"
+        />
+
+        <MealCard mealName="X-tudo" mealHour="20:00" variant="red" />
+      </S.DailyContainer>
+    </S.HomeContainer>
   );
 };

@@ -8,6 +8,7 @@ export const Text = ({
   fontFamily,
   fontSize,
   fontWeight,
+  paddingRight = 0,
   content,
   ...rest
 }: TextProps) => {
@@ -17,6 +18,7 @@ export const Text = ({
       fontFamily={fontFamily}
       fontSize={fontSize}
       fontWeight={fontWeight}
+      paddingRight={paddingRight}
       {...rest}
     >
       {content}
