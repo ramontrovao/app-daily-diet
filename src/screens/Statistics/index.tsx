@@ -2,6 +2,7 @@ import * as S from "./styles";
 import { HeaderMeal } from "@components/HeaderMeal";
 import { Text } from "@components/Text";
 import { InfoCard } from "@components/InfoCard";
+import { View } from "react-native";
 
 export const Statistics = () => {
   return (
@@ -26,16 +27,21 @@ export const Statistics = () => {
           subtitle="refeições registradas"
           variant="GRAY_6"
         />
-        <InfoCard
-          title="32"
-          subtitle="refeições dentro da dieta"
-          variant="GREEN_LIGHT"
-        />
-        <InfoCard
-          title="77"
-          subtitle="refeições fora da dieta"
-          variant="RED_LIGHT"
-        />
+
+        <S.StatisticsInformationWrapperContainer>
+          <InfoCard
+            title="32"
+            subtitle="refeições dentro da dieta"
+            variant="GREEN_LIGHT"
+            width={145}
+          />
+          <InfoCard
+            title="77"
+            subtitle="refeições fora da dieta"
+            variant="RED_LIGHT"
+            width={145}
+          />
+        </S.StatisticsInformationWrapperContainer>
       </S.StatisticsInformationContainer>
     </S.StatisticsContainer>
   );

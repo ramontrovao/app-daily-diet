@@ -4,9 +4,14 @@ import { Text } from "@components/Text";
 
 type InfoCardProps = InfoCardDTO & { title: string; subtitle: string };
 
-export const InfoCard = ({ title, subtitle, variant }: InfoCardProps) => {
+export const InfoCard = ({
+  title,
+  subtitle,
+  variant,
+  width,
+}: InfoCardProps) => {
   return (
-    <S.InfoCardContainer variant={variant}>
+    <S.InfoCardContainer variant={variant} width={width}>
       <Text
         content={title}
         color="BLACK"

@@ -15,5 +15,6 @@ export const Text = styled.Text<TextDTO>`
     font-family: ${FONT_FAMILY[fontFamily]};
     font-weight: ${fontWeight ? fontWeight : 400};
     padding-right: ${paddingRight}px;
+    text-align: center;
   `}
 `;

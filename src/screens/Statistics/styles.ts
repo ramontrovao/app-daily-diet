@@ -10,9 +10,14 @@ export const StatisticsInformationContainer = styled.View`
 
   flex: 1;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
 
   background: ${({ theme: { COLORS } }) => COLORS.GRAY_7};
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
+`;
+
+export const StatisticsInformationWrapperContainer = styled.View`
+  flex-direction: row;
+  gap: 5px;
 `;

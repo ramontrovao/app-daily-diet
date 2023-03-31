@@ -4,4 +4,5 @@ const { COLORS } = useTheme();
 
 export type InfoCardDTO = {
   variant: keyof typeof COLORS;
+  width?: number;
 };
