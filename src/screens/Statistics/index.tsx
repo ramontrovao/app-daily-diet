@@ -22,6 +22,7 @@ export const Statistics = () => {
           subtitle="melhor sequência de pratos dentro da dieta"
           variant="GRAY_6"
         />
+
         <InfoCard
           title="109"
           subtitle="refeições registradas"

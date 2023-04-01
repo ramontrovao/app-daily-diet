@@ -9,6 +9,7 @@ export const Text = ({
   fontSize,
   fontWeight,
   paddingRight = 0,
+  align = "left",
   content,
   ...rest
 }: TextProps) => {
@@ -19,6 +20,7 @@ export const Text = ({
       fontSize={fontSize}
       fontWeight={fontWeight}
       paddingRight={paddingRight}
+      align={align}
       {...rest}
     >
       {content}

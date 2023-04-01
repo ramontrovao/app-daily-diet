@@ -8,6 +8,7 @@ export const Text = styled.Text<TextDTO>`
     fontFamily,
     fontWeight,
     paddingRight,
+    align,
     theme: { COLORS, FONT_SIZE, FONT_FAMILY },
   }) => css`
     color: ${COLORS[color]};
@@ -15,6 +16,6 @@ export const Text = styled.Text<TextDTO>`
     font-family: ${FONT_FAMILY[fontFamily]};
     font-weight: ${fontWeight ? fontWeight : 400};
     padding-right: ${paddingRight}px;
-    text-align: center;
+    text-align: ${align};
   `}
 `;

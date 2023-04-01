@@ -8,5 +8,6 @@ export type TextDTO = {
   fontSize: keyof typeof FONT_SIZE;
   fontFamily: keyof typeof FONT_FAMILY;
   paddingRight?: number;
+  align?: "left" | "center" | "right";
   fontWeight?: number | "bold";
 } & TextProps;

@@ -19,3 +19,10 @@ export const PercentContainer = styled.TouchableOpacity<PercentContainerProps>`
     border-radius: 8px;
   `}
 `;
+
+export const HeaderPercentContainer = styled.View`
+  width: 100%;
+  margin-bottom: -20px;
+
+  align-items: flex-end;
+`;
