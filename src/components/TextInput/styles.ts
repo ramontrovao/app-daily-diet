@@ -1,8 +1,10 @@
 import styled, { css } from "styled-components/native";
+import { TextInputDTO } from "./TextInputDTO";
 
-export const TextInputContainer = styled.TextInput`
-  ${({ theme: { COLORS, FONT_SIZE, FONT_FAMILY } }) => css`
-    width: 100%;
+export const TextInputContainer = styled.TextInput<TextInputDTO>`
+  ${({ theme: { COLORS, FONT_SIZE, FONT_FAMILY }, width, height }) => css`
+    width: ${width ? `${width}px` : "100%"};
+    height: ${height ? `${height}px` : "auto"};
     padding: 14px;
 
     border-width: 1px;

@@ -1,7 +1,8 @@
+import * as S from "./styles";
+
 import { Icon } from "@components/Icon";
 import { Text } from "@components/Text";
 import { TouchableOpacityProps } from "react-native";
-import * as S from "./styles";
 
 type PercentProps = {
   variant?: "positive" | "negative";
@@ -14,6 +15,7 @@ export const Percent = ({ variant = "positive", ...rest }: PercentProps) => {
         {variant === "positive" && (
           <Icon name="arrow-upward" color="GREEN_DARK" size={20} />
         )}
+
         {variant === "negative" && (
           <Icon name="arrow-downward" color="RED_DARK" size={20} />
         )}

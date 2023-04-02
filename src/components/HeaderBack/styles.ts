@@ -18,3 +18,5 @@ export const HeaderBackTitleContainer = styled.View`
   justify-content: center;
   align-items: center;
 `;
+
+export const BackButton = styled.TouchableOpacity``;

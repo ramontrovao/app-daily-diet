@@ -1,12 +1,23 @@
-import { Icon } from "@components/Icon";
-import { Text } from "@components/Text";
-import { HeaderBackDTO } from "./HeaderBackDTO";
 import * as S from "./styles";
 
+import { HeaderBackDTO } from "./HeaderBackDTO";
+
+import { Icon } from "@components/Icon";
+import { Text } from "@components/Text";
+import { useNavigation } from "@react-navigation/native";
+
 export const HeaderBack = ({ variant = "GRAY_5" }: HeaderBackDTO) => {
+  const { goBack } = useNavigation();
+
+  const handleGoBack = () => {
+    goBack();
+  };
+
   return (
     <S.HeaderBackContainer variant={variant}>
-      <Icon color="GRAY_2" name="arrow-back" size={28} />
+      <S.BackButton onPress={handleGoBack}>
+        <Icon color="GRAY_2" name="arrow-back" size={28} />
+      </S.BackButton>
 
       <S.HeaderBackTitleContainer>
         <Text

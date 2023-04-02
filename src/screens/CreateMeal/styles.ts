@@ -17,13 +17,13 @@ export const CreateMealFormContainer = styled.View`
 `;
 
 export const CreateMealFormFieldsetContainer = styled.View`
-  width: 100%;
   gap: 5px;
 `;
 
 export const CreateMealFiedlsetWrapperContainer = styled.View`
   width: 100%;
   flex-direction: row;
+  justify-content: space-between;
 
-  gap: 25px;
+  gap: 10px;
 `;

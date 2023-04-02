@@ -2,8 +2,20 @@ import * as S from "./styles";
 import { HeaderBack } from "@components/HeaderBack";
 import { Text } from "@components/Text";
 import { TextInput } from "@components/TextInput";
+import { RadioButton } from "@components/RadioButton";
+import { useState } from "react";
 
 export const CreateMeal = () => {
+  const [dietOptionActive, setDietOptionActive] = useState("Sim");
+
+  const handleChangeDietOption = () => {
+    if (dietOptionActive === "Sim") {
+      setDietOptionActive("Não");
+    } else {
+      setDietOptionActive("Sim");
+    }
+  };
+
   return (
     <S.CreateMealContainer>
       <HeaderBack />
@@ -28,30 +40,59 @@ export const CreateMeal = () => {
             fontFamily="BOLD"
           />
 
-          <TextInput />
+          <TextInput height={120} textAlignVertical="top" />
         </S.CreateMealFormFieldsetContainer>
+
+        <S.CreateMealFiedlsetWrapperContainer>
+          <S.CreateMealFormFieldsetContainer>
+            <Text
+              content="Data"
+              color="GRAY_2"
+              fontSize="XSM"
+              fontFamily="BOLD"
+            />
+
+            <TextInput width={135} />
+          </S.CreateMealFormFieldsetContainer>
+
+          <S.CreateMealFormFieldsetContainer>
+            <Text
+              content="Hora"
+              color="GRAY_2"
+              fontSize="XSM"
+              fontFamily="BOLD"
+            />
+
+            <TextInput width={135} />
+          </S.CreateMealFormFieldsetContainer>
+        </S.CreateMealFiedlsetWrapperContainer>
 
         <S.CreateMealFormFieldsetContainer>
           <Text
-            content="Data"
+            content="Está dentro da dieta?"
             color="GRAY_2"
             fontSize="XSM"
             fontFamily="BOLD"
           />
-
-          <TextInput />
         </S.CreateMealFormFieldsetContainer>
 
-        <S.CreateMealFormFieldsetContainer>
-          <Text
-            content="Hora"
-            color="GRAY_2"
-            fontSize="XSM"
-            fontFamily="BOLD"
+        <S.CreateMealFiedlsetWrapperContainer>
+          <RadioButton
+            icon="brightness-1"
+            text="Sim"
+            variant="green"
+            isActive={dietOptionActive === "Sim"}
+            onPress={handleChangeDietOption}
           />
 
-          <TextInput />
-        </S.CreateMealFormFieldsetContainer>
+          <RadioButton
+            icon="brightness-1"
+            text="Não"
+            variant="red"
+            isActive={dietOptionActive === "Não"}
+            onPress={handleChangeDietOption}
+          />
+        </S.CreateMealFiedlsetWrapperContainer>
       </S.CreateMealFormContainer>
     </S.CreateMealContainer>
   );
