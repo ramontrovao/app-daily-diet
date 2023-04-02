@@ -1,11 +1,13 @@
 import styled from "styled-components/native";
+import { HeaderMealDTO } from "./HeaderMealDTO";
 
-export const HeaderMealContainer = styled.View`
+export const HeaderMealContainer = styled.View<HeaderMealDTO>`
   width: 100%;
   height: 200px;
   padding: 35px 15px;
 
-  background: ${({ theme: { COLORS } }) => COLORS.GREEN_MID};
+  background: ${({ theme: { COLORS }, variant }) =>
+    variant === "green" ? COLORS.GREEN_MID : COLORS.RED_MID};
 `;
 
 export const ArrowContainer = styled.View`

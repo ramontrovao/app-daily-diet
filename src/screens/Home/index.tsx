@@ -1,15 +1,28 @@
+import * as S from "./styles";
+
 import { Button } from "@components/Button";
 import { HeaderProfile } from "@components/HeaderProfile";
 import { MealCard } from "@components/MealCard";
 import { Percent } from "@components/Percent";
 import { Text } from "@components/Text";
-import * as S from "./styles";
+
+import { useNavigation } from "@react-navigation/native";
 
 export const Home = () => {
+  const { navigate } = useNavigation();
+
+  const handleNavigateToStatistics = () => {
+    navigate("statistics");
+  };
+
+  const handleNavigateToCreateMeal = () => {
+    navigate("create-meal");
+  };
+
   return (
     <S.HomeContainer>
       <HeaderProfile />
-      <Percent />
+      <Percent variant="positive" onPress={handleNavigateToStatistics} />
 
       <S.MealsContainer>
         <Text
@@ -19,7 +32,11 @@ export const Home = () => {
           content="Refeições"
         />
 
-        <Button icon="add" text="Nova refeição" />
+        <Button
+          icon="add"
+          text="Nova refeição"
+          onPress={handleNavigateToCreateMeal}
+        />
       </S.MealsContainer>
 
       <S.DailyContainer>
