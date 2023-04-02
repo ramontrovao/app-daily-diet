@@ -1,10 +1,10 @@
 import * as S from "./styles";
-import { Text } from "react-native";
+import { HeaderBack } from "@components/HeaderBack";
 
 export const CreateMeal = () => {
   return (
     <S.CreateMealContainer>
-      <Text>Olá</Text>
+      <HeaderBack />
     </S.CreateMealContainer>
   );
 };
