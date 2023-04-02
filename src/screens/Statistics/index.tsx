@@ -1,8 +1,8 @@
 import * as S from "./styles";
+
 import { HeaderMeal } from "@components/HeaderMeal";
 import { Text } from "@components/Text";
 import { InfoCard } from "@components/InfoCard";
-import { View } from "react-native";
 
 export const Statistics = () => {
   return (
