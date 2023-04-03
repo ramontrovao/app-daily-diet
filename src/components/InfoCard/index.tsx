@@ -1,6 +1,8 @@
 import * as S from "./styles";
-import { InfoCardDTO } from "./InfoCardDTO";
+
 import { Text } from "@components/Text";
+
+import { InfoCardDTO } from "./InfoCardDTO";
 
 type InfoCardProps = InfoCardDTO & { title: string; subtitle: string };
 
@@ -18,6 +20,7 @@ export const InfoCard = ({
         fontSize="L"
         fontFamily="BOLD"
         fontWeight="bold"
+        align="center"
       />
 
       <Text
@@ -25,6 +28,7 @@ export const InfoCard = ({
         color="GRAY_2"
         fontSize="M"
         fontFamily="REGULAR"
+        align="center"
       />
     </S.InfoCardContainer>
   );

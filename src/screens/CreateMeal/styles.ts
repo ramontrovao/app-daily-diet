@@ -5,11 +5,11 @@ export const CreateMealContainer = styled.SafeAreaView`
 `;
 
 export const CreateMealFormContainer = styled.View`
-  margin-top: -18px;
+  margin-top: -30px;
   padding: 35px 15px;
 
   flex: 1;
-  gap: 25px;
+  gap: 20px;
 
   background: ${({ theme: { COLORS } }) => COLORS.GRAY_7};
   border-top-right-radius: 25px;

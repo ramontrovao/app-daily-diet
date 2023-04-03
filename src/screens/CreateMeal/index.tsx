@@ -4,8 +4,11 @@ import { Text } from "@components/Text";
 import { TextInput } from "@components/TextInput";
 import { RadioButton } from "@components/RadioButton";
 import { useState } from "react";
+import { Button } from "@components/Button";
+import { useNavigation } from "@react-navigation/native";
 
 export const CreateMeal = () => {
+  const { navigate } = useNavigation();
   const [dietOptionActive, setDietOptionActive] = useState("Sim");
 
   const handleChangeDietOption = () => {
@@ -14,6 +17,10 @@ export const CreateMeal = () => {
     } else {
       setDietOptionActive("Sim");
     }
+  };
+
+  const handleNavigateToFeedback = () => {
+    navigate("feedback");
   };
 
   return (
@@ -93,6 +100,12 @@ export const CreateMeal = () => {
             onPress={handleChangeDietOption}
           />
         </S.CreateMealFiedlsetWrapperContainer>
+
+        <Button
+          text="Cadastrar refeição"
+          variant="black"
+          onPress={handleNavigateToFeedback}
+        />
       </S.CreateMealFormContainer>
     </S.CreateMealContainer>
   );
