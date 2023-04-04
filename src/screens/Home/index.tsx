@@ -16,7 +16,7 @@ export const Home = () => {
   };
 
   const handleNavigateToCreateMeal = () => {
-    navigate("edit-meal");
+    navigate("create-meal");
   };
 
   const handleNavigateToMealResume = () => {

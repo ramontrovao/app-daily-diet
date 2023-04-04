@@ -1,44 +1,66 @@
 import { Button } from "@components/Button";
 import { HeaderBack } from "@components/HeaderBack";
+import { MealStatusCard } from "@components/MealStatusCard";
 import { Text } from "@components/Text";
+import { useNavigation } from "@react-navigation/native";
 import * as S from "./styles";
 
 export const MealResume = () => {
+  const { navigate } = useNavigation();
+
+  const handleNavigateToEditMeal = () => {
+    navigate("edit-meal");
+  };
+
   return (
     <S.MealResumeContainer>
       <HeaderBack title="Refeição" variant="GREEN_LIGHT" />
 
       <S.MealResumeContentContainer>
-        <Text
-          content="Sanduíche"
-          fontSize="L"
-          fontFamily="BOLD"
-          color="BLACK"
-        />
+        <S.MealResumeContentTopContainer>
+          <S.MealResumeTitleContainer>
+            <Text
+              content="Sanduíche"
+              fontSize="L"
+              fontFamily="BOLD"
+              color="BLACK"
+            />
 
-        <Text
-          content="Sanduíche de pão integral com atum e salada de alface e tomate"
-          fontSize="M"
-          fontFamily="REGULAR"
-          color="GRAY_2"
-        />
+            <Text
+              content="Sanduíche de pão integral com atum e salada de alface e tomate"
+              fontSize="M"
+              fontFamily="REGULAR"
+              color="GRAY_2"
+            />
+          </S.MealResumeTitleContainer>
 
-        <Text
-          content="Data e hora"
-          fontSize="XSM"
-          fontFamily="BOLD"
-          color="BLACK"
-        />
+          <S.MealResumeDescriptionContainer>
+            <Text
+              content="Data e hora"
+              fontSize="XSM"
+              fontFamily="BOLD"
+              color="BLACK"
+            />
 
-        <Text
-          content="03/04/2023 às 10:14"
-          fontSize="M"
-          fontFamily="REGULAR"
-          color="GRAY_2"
-        />
+            <Text
+              content="03/04/2023 às 10:14"
+              fontSize="M"
+              fontFamily="REGULAR"
+              color="GRAY_2"
+            />
 
-        <Button text="Editar refeição" icon="edit" />
-        <Button text="Excluir refeição" icon="delete" variant="white" />
+            <MealStatusCard isHealthy={true} />
+          </S.MealResumeDescriptionContainer>
+        </S.MealResumeContentTopContainer>
+
+        <S.MealResumeBottomContainer>
+          <Button
+            text="Editar refeição"
+            icon="edit"
+            onPress={handleNavigateToEditMeal}
+          />
+          <Button text="Excluir refeição" icon="delete" variant="white" />
+        </S.MealResumeBottomContainer>
       </S.MealResumeContentContainer>
     </S.MealResumeContainer>
   );

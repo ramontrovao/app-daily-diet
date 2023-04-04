@@ -3,13 +3,13 @@ import { Text } from "@components/Text";
 import * as S from "./styles";
 
 type MealStatusCardProps = {
-  variant?: "green" | "red";
+  isHealthy?: boolean;
 };
 
-export const MealStatusCard = ({ variant = "green" }: MealStatusCardProps) => {
+export const MealStatusCard = ({ isHealthy = true }: MealStatusCardProps) => {
   return (
     <S.MealStatusCardContainer>
-      {variant === "green" && (
+      {isHealthy && (
         <>
           <Icon color="GREEN_DARK" size={8} name="brightness-1" />
 
@@ -22,7 +22,7 @@ export const MealStatusCard = ({ variant = "green" }: MealStatusCardProps) => {
         </>
       )}
 
-      {variant === "red" && (
+      {!isHealthy && (
         <>
           <Icon color="RED_DARK" size={8} name="brightness-1" />
 

@@ -5,7 +5,7 @@ export const TextInputContainer = styled.TextInput<TextInputDTO>`
   ${({ theme: { COLORS, FONT_SIZE, FONT_FAMILY }, width, height }) => css`
     width: ${width ? `${width}px` : "100%"};
     height: ${height ? `${height}px` : "auto"};
-    padding: 14px;
+    padding: 12px;
 
     border-width: 1px;
     border-radius: 6px;
