@@ -1,4 +1,5 @@
 import { Button } from "@components/Button";
+import { Confirm } from "@components/Confirm";
 import { HeaderBack } from "@components/HeaderBack";
 import { MealStatusCard } from "@components/MealStatusCard";
 import { Text } from "@components/Text";
@@ -60,6 +61,11 @@ export const MealResume = () => {
             onPress={handleNavigateToEditMeal}
           />
           <Button text="Excluir refeição" icon="delete" variant="white" />
+          <Confirm
+            title="Deseja realmente excluir o registro da refeição?"
+            cancelText="Cancelar"
+            confirmText="Sim"
+          />
         </S.MealResumeBottomContainer>
       </S.MealResumeContentContainer>
     </S.MealResumeContainer>

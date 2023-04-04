@@ -14,11 +14,12 @@ type ButtonProps = {
 export const Button = ({
   icon,
   text,
+  width,
   variant = "black",
   ...rest
 }: ButtonProps) => {
   return (
-    <S.ButtonContainer {...rest} variant={variant}>
+    <S.ButtonContainer {...rest} variant={variant} width={width}>
       {icon && <S.ButtonIcon name={icon} variant={variant} />}
       <Text
         content={text}

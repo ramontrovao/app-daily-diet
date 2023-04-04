@@ -3,8 +3,8 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { ButtonDTO } from "./ButtonDTO";
 
 export const ButtonContainer = styled.TouchableOpacity<ButtonDTO>`
-  width: 100%;
-  padding: 16px 24px;
+  width: ${({ width }) => (width ? `${width}px` : "100%")};
+  padding: 14px 24px;
 
   flex-direction: row;
   justify-content: center;
