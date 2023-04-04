@@ -5,6 +5,7 @@ export declare global {
       statistics: undefined;
       "create-meal": undefined;
       "edit-meal": undefined;
+      "meal-resume": undefined;
       feedback: undefined;
     }
   }

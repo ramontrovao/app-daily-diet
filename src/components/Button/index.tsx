@@ -1,13 +1,15 @@
-import { TouchableOpacityProps } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
 import * as S from "./styles";
+
+import { TouchableOpacityProps } from "react-native";
+
+import { ButtonDTO } from "./ButtonDTO";
+
 import { Text } from "@components/Text";
 
 type ButtonProps = {
-  icon?: keyof typeof MaterialIcons.glyphMap;
   text: string;
-  variant?: "black";
-} & TouchableOpacityProps;
+} & ButtonDTO &
+  TouchableOpacityProps;
 
 export const Button = ({
   icon,
@@ -17,8 +19,13 @@ export const Button = ({
 }: ButtonProps) => {
   return (
     <S.ButtonContainer {...rest} variant={variant}>
-      {icon && <S.ButtonIcon name={icon} />}
-      <Text content={text} color="WHITE" fontSize="M" fontFamily="REGULAR" />
+      {icon && <S.ButtonIcon name={icon} variant={variant} />}
+      <Text
+        content={text}
+        color={variant === "black" ? "WHITE" : "BLACK"}
+        fontSize="M"
+        fontFamily="REGULAR"
+      />
     </S.ButtonContainer>
   );
 };

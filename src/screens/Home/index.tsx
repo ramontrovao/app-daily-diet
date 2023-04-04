@@ -19,6 +19,10 @@ export const Home = () => {
     navigate("edit-meal");
   };
 
+  const handleNavigateToMealResume = () => {
+    navigate("meal-resume");
+  };
+
   return (
     <S.HomeContainer>
       <HeaderProfile />
@@ -47,7 +51,12 @@ export const Home = () => {
           content="30.03.23"
         />
 
-        <MealCard mealName="X-tudo" mealHour="20:00" variant="red" />
+        <MealCard
+          mealName="X-tudo"
+          mealHour="20:00"
+          variant="red"
+          onPress={handleNavigateToMealResume}
+        />
       </S.DailyContainer>
     </S.HomeContainer>
   );

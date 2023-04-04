@@ -1,7 +1,8 @@
 import styled, { css } from "styled-components/native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { MealCardDTO } from "./MealCardDTO";
 
-export const MealCardContainer = styled.View`
+export const MealCardContainer = styled.TouchableOpacity`
   width: 100%;
   padding: 14px 16px 14px 12px;
 
@@ -36,11 +37,7 @@ export const HourText = styled.Text`
   `}
 `;
 
-type StatusIconStyleProps = {
-  variant: "green" | "red";
-};
-
-export const StatusIcon = styled(MaterialIcons).attrs<StatusIconStyleProps>(
+export const StatusIcon = styled(MaterialIcons).attrs<MealCardDTO>(
   ({ theme: { COLORS }, variant }) => ({
     name: "brightness-1",
     color: variant === "green" ? COLORS.GREEN_MID : COLORS.RED_MID,
