@@ -6,7 +6,9 @@ import { Icon } from "@components/Icon";
 import { Text } from "@components/Text";
 import { useNavigation } from "@react-navigation/native";
 
-export const HeaderBack = ({ variant = "GRAY_5" }: HeaderBackDTO) => {
+type HeaderBackProps = { title: string } & HeaderBackDTO;
+
+export const HeaderBack = ({ title, variant = "GRAY_5" }: HeaderBackProps) => {
   const { goBack } = useNavigation();
 
   const handleGoBack = () => {
@@ -20,12 +22,7 @@ export const HeaderBack = ({ variant = "GRAY_5" }: HeaderBackDTO) => {
       </S.BackButton>
 
       <S.HeaderBackTitleContainer>
-        <Text
-          content="Nova refeição"
-          color="GRAY_2"
-          fontSize="L"
-          fontFamily="BOLD"
-        />
+        <Text content={title} color="GRAY_2" fontSize="L" fontFamily="BOLD" />
       </S.HeaderBackTitleContainer>
     </S.HeaderBackContainer>
   );

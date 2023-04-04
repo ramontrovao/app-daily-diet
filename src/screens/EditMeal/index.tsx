@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Button } from "@components/Button";
 import { useNavigation } from "@react-navigation/native";
 
-export const CreateMeal = () => {
+export const EditMeal = () => {
   const { navigate } = useNavigation();
   const [dietOptionActive, setDietOptionActive] = useState("Sim");
 
@@ -24,11 +24,11 @@ export const CreateMeal = () => {
   };
 
   return (
-    <S.CreateMealContainer>
-      <HeaderBack title="Nova refeição" />
+    <S.EditMealContainer>
+      <HeaderBack title="Editar refeição" />
 
-      <S.CreateMealFormContainer>
-        <S.CreateMealFormFieldsetContainer>
+      <S.EditMealFormContainer>
+        <S.EditMealFormFieldsetContainer>
           <Text
             content="Nome"
             color="GRAY_2"
@@ -37,9 +37,9 @@ export const CreateMeal = () => {
           />
 
           <TextInput />
-        </S.CreateMealFormFieldsetContainer>
+        </S.EditMealFormFieldsetContainer>
 
-        <S.CreateMealFormFieldsetContainer>
+        <S.EditMealFormFieldsetContainer>
           <Text
             content="Descrição"
             color="GRAY_2"
@@ -48,10 +48,10 @@ export const CreateMeal = () => {
           />
 
           <TextInput height={120} textAlignVertical="top" />
-        </S.CreateMealFormFieldsetContainer>
+        </S.EditMealFormFieldsetContainer>
 
-        <S.CreateMealFiedlsetWrapperContainer>
-          <S.CreateMealFormFieldsetContainer>
+        <S.EditMealFiedlsetWrapperContainer>
+          <S.EditMealFormFieldsetContainer>
             <Text
               content="Data"
               color="GRAY_2"
@@ -60,9 +60,9 @@ export const CreateMeal = () => {
             />
 
             <TextInput width={135} />
-          </S.CreateMealFormFieldsetContainer>
+          </S.EditMealFormFieldsetContainer>
 
-          <S.CreateMealFormFieldsetContainer>
+          <S.EditMealFormFieldsetContainer>
             <Text
               content="Hora"
               color="GRAY_2"
@@ -71,19 +71,19 @@ export const CreateMeal = () => {
             />
 
             <TextInput width={135} />
-          </S.CreateMealFormFieldsetContainer>
-        </S.CreateMealFiedlsetWrapperContainer>
+          </S.EditMealFormFieldsetContainer>
+        </S.EditMealFiedlsetWrapperContainer>
 
-        <S.CreateMealFormFieldsetContainer>
+        <S.EditMealFormFieldsetContainer>
           <Text
             content="Está dentro da dieta?"
             color="GRAY_2"
             fontSize="XSM"
             fontFamily="BOLD"
           />
-        </S.CreateMealFormFieldsetContainer>
+        </S.EditMealFormFieldsetContainer>
 
-        <S.CreateMealFiedlsetWrapperContainer>
+        <S.EditMealFiedlsetWrapperContainer>
           <RadioButton
             icon="brightness-1"
             text="Sim"
@@ -99,14 +99,14 @@ export const CreateMeal = () => {
             isActive={dietOptionActive === "Não"}
             onPress={handleChangeDietOption}
           />
-        </S.CreateMealFiedlsetWrapperContainer>
+        </S.EditMealFiedlsetWrapperContainer>
 
         <Button
-          text="Cadastrar refeição"
+          text="Salvar refeição"
           variant="black"
           onPress={handleNavigateToFeedback}
         />
-      </S.CreateMealFormContainer>
-    </S.CreateMealContainer>
+      </S.EditMealFormContainer>
+    </S.EditMealContainer>
   );
 };
