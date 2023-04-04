@@ -4,13 +4,19 @@ import { HeaderBack } from "@components/HeaderBack";
 import { MealStatusCard } from "@components/MealStatusCard";
 import { Text } from "@components/Text";
 import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 import * as S from "./styles";
 
 export const MealResume = () => {
   const { navigate } = useNavigation();
+  const [modalIsVisible, setModalIsVisible] = useState(false);
 
   const handleNavigateToEditMeal = () => {
     navigate("edit-meal");
+  };
+
+  const handleToggleModal = () => {
+    setModalIsVisible(!modalIsVisible);
   };
 
   return (
@@ -60,11 +66,19 @@ export const MealResume = () => {
             icon="edit"
             onPress={handleNavigateToEditMeal}
           />
-          <Button text="Excluir refeição" icon="delete" variant="white" />
+          <Button
+            text="Excluir refeição"
+            icon="delete"
+            variant="white"
+            onPress={handleToggleModal}
+          />
           <Confirm
             title="Deseja realmente excluir o registro da refeição?"
             cancelText="Cancelar"
             confirmText="Sim"
+            onCancel={handleToggleModal}
+            onConfirm={handleToggleModal}
+            visible={modalIsVisible}
           />
         </S.MealResumeBottomContainer>
       </S.MealResumeContentContainer>
