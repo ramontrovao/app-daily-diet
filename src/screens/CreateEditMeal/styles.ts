@@ -4,12 +4,15 @@ export const CreateMealContainer = styled.SafeAreaView`
   flex: 1;
 `;
 
-export const CreateMealFormContainer = styled.View`
+export const CreateMealFormContainerScroll = styled.ScrollView`
   margin-top: -30px;
-  padding: 35px 15px;
 
   flex: 1;
-  gap: 20px;
+`;
+
+export const CreateMealFormContainer = styled.View`
+  flex: 1;
+  padding: 25px 15px;
 
   background: ${({ theme: { COLORS } }) => COLORS.GRAY_7};
   border-top-right-radius: 25px;
@@ -17,7 +20,8 @@ export const CreateMealFormContainer = styled.View`
 `;
 
 export const CreateMealFormFieldsetContainer = styled.View`
-  gap: 5px;
+  gap: 10px;
+  margin-bottom: 25px;
 `;
 
 export const CreateMealFiedlsetWrapperContainer = styled.View`
