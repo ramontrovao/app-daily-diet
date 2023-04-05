@@ -1,8 +1,11 @@
 import * as S from "./styles";
+
 import { Icon } from "@components/Icon";
 import { Text } from "@components/Text";
-import { useNavigation } from "@react-navigation/native";
+
 import { HeaderMealDTO } from "./HeaderMealDTO";
+
+import { useNavigation } from "@react-navigation/native";
 
 export const HeaderMeal = ({ variant = "green" }: HeaderMealDTO) => {
   const { goBack } = useNavigation();

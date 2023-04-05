@@ -2,6 +2,7 @@ import * as S from "./styles";
 
 import { Icon } from "@components/Icon";
 import { Text } from "@components/Text";
+
 import { TouchableOpacityProps } from "react-native";
 
 type PercentProps = {

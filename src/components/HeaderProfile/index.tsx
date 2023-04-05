@@ -1,4 +1,5 @@
 import * as S from "./styles";
+
 import logo from "@assets/logo.png";
 import profile from "@assets/profile.png";
 

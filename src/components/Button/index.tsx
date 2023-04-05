@@ -1,10 +1,10 @@
 import * as S from "./styles";
 
-import { TouchableOpacityProps } from "react-native";
+import { Text } from "@components/Text";
 
 import { ButtonDTO } from "./ButtonDTO";
 
-import { Text } from "@components/Text";
+import { TouchableOpacityProps } from "react-native";
 
 type ButtonProps = {
   text: string;

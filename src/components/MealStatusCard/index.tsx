@@ -1,6 +1,7 @@
+import * as S from "./styles";
+
 import { Icon } from "@components/Icon";
 import { Text } from "@components/Text";
-import * as S from "./styles";
 
 type MealStatusCardProps = {
   isHealthy?: boolean;

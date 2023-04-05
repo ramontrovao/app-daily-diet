@@ -1,9 +1,12 @@
-import { TouchableOpacityProps } from "react-native";
 import * as S from "./styles";
 
-import { MaterialIcons } from "@expo/vector-icons";
 import { Text } from "@components/Text";
+
 import { RadioButtonDTO } from "./RadioButtonDTO";
+
+import { MaterialIcons } from "@expo/vector-icons";
+
+import { TouchableOpacityProps } from "react-native";
 
 type RadioButtonProps = {
   icon: keyof typeof MaterialIcons.glyphMap;

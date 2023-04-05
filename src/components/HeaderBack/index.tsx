@@ -4,6 +4,7 @@ import { HeaderBackDTO } from "./HeaderBackDTO";
 
 import { Icon } from "@components/Icon";
 import { Text } from "@components/Text";
+
 import { useNavigation } from "@react-navigation/native";
 
 type HeaderBackProps = { title: string } & HeaderBackDTO;

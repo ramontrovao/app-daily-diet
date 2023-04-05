@@ -1,7 +1,8 @@
+import * as S from "./styles";
+
 import { Button } from "@components/Button";
 import { Text } from "@components/Text";
 import { ModalProps } from "react-native";
-import * as S from "./styles";
 
 type ConfirmProps = {
   title: string;
@@ -21,7 +22,7 @@ export const Confirm = ({
   ...rest
 }: ConfirmProps) => {
   return (
-    <S.ConfirmContainer transparent {...rest}>
+    <S.ConfirmContainer transparent={true} animationType="fade" {...rest}>
       <S.ConfirmBackgroundContainer>
         <S.ConfirmModalContentContainer>
           <Text
@@ -43,7 +44,7 @@ export const Confirm = ({
             <Button
               text={confirmText}
               variant="black"
-              width={115}
+              width={110}
               onPress={onConfirm}
             />
           </S.ConfirmModalContentWrapperContainer>

@@ -1,4 +1,5 @@
 import * as S from "./styles";
+
 import { TextInputDTO } from "./TextInputDTO";
 
 type TextInputProps = TextInputDTO & {

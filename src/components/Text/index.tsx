@@ -1,5 +1,6 @@
-import { TextDTO } from "./TextDTO";
 import * as S from "./styles";
+
+import { TextDTO } from "./TextDTO";
 
 type TextProps = TextDTO & { content: string };
 

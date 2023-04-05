@@ -1,10 +1,10 @@
 import * as S from "./styles";
 
-import { TouchableOpacityProps } from "react-native";
+import { Text } from "@components/Text";
 
 import { MealCardDTO } from "./MealCardDTO";
 
-import { Text } from "@components/Text";
+import { TouchableOpacityProps } from "react-native";
 
 type MealCardProps = {
   mealName: string;
