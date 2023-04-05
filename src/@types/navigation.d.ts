@@ -4,8 +4,12 @@ export declare global {
       home: undefined;
       statistics: undefined;
       "create-meal": undefined;
-      "edit-meal": undefined;
-      "meal-resume": undefined;
+      "edit-meal": {
+        id: string;
+      };
+      "meal-resume": {
+        id: string;
+      };
       feedback: undefined;
     }
   }

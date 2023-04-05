@@ -1,25 +1,48 @@
 import * as S from "./styles";
+
 import { HeaderBack } from "@components/HeaderBack";
 import { Text } from "@components/Text";
 import { TextInput } from "@components/TextInput";
 import { RadioButton } from "@components/RadioButton";
-import { useState } from "react";
 import { Button } from "@components/Button";
+
+import { useState } from "react";
+
 import { useNavigation } from "@react-navigation/native";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import * as z from "zod";
 
 export const CreateMeal = () => {
   const { navigate } = useNavigation();
   const [dietOptionActive, setDietOptionActive] = useState("Sim");
 
+  const validationSchema = z.object({
+    name: z.string().min(1),
+    description: z.string().min(1),
+    date: z.string().min(1),
+    hour: z.string().min(1),
+  });
+
+  type validationSchemaType = z.infer<typeof validationSchema>;
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<validationSchemaType>({
+    resolver: zodResolver(validationSchema),
+  });
+
   const handleChangeDietOption = () => {
-    if (dietOptionActive === "Sim") {
-      setDietOptionActive("Não");
-    } else {
-      setDietOptionActive("Sim");
-    }
+    setDietOptionActive(dietOptionActive === "Sim" ? "Não" : "Sim");
   };
 
-  const handleNavigateToFeedback = () => {
+  const onCreateMeal = async (data: validationSchemaType) => {
+    console.log(data);
+    console.log(errors);
+
     navigate("feedback");
   };
 
@@ -36,7 +59,16 @@ export const CreateMeal = () => {
             fontFamily="BOLD"
           />
 
-          <TextInput />
+          <TextInput name="name" control={control} />
+
+          {errors.name && (
+            <Text
+              content={errors.name.message!}
+              color="RED_MID"
+              fontSize="M"
+              fontFamily="REGULAR"
+            />
+          )}
         </S.CreateMealFormFieldsetContainer>
 
         <S.CreateMealFormFieldsetContainer>
@@ -47,7 +79,20 @@ export const CreateMeal = () => {
             fontFamily="BOLD"
           />
 
-          <TextInput height={120} textAlignVertical="top" />
+          <TextInput
+            height={120}
+            textAlignVertical="top"
+            name="description"
+            control={control}
+          />
+          {errors.description && (
+            <Text
+              content={errors.description.message!}
+              color="RED_MID"
+              fontSize="M"
+              fontFamily="REGULAR"
+            />
+          )}
         </S.CreateMealFormFieldsetContainer>
 
         <S.CreateMealFiedlsetWrapperContainer>
@@ -59,7 +104,15 @@ export const CreateMeal = () => {
               fontFamily="BOLD"
             />
 
-            <TextInput width={135} />
+            <TextInput width={135} name="date" control={control} />
+            {errors.date && (
+              <Text
+                content={errors.date.message!}
+                color="RED_MID"
+                fontSize="M"
+                fontFamily="REGULAR"
+              />
+            )}
           </S.CreateMealFormFieldsetContainer>
 
           <S.CreateMealFormFieldsetContainer>
@@ -70,7 +123,15 @@ export const CreateMeal = () => {
               fontFamily="BOLD"
             />
 
-            <TextInput width={135} />
+            <TextInput width={135} name="hour" control={control} />
+            {errors.hour && (
+              <Text
+                content={errors.hour.message!}
+                color="RED_MID"
+                fontSize="M"
+                fontFamily="REGULAR"
+              />
+            )}
           </S.CreateMealFormFieldsetContainer>
         </S.CreateMealFiedlsetWrapperContainer>
 
@@ -104,7 +165,7 @@ export const CreateMeal = () => {
         <Button
           text="Cadastrar refeição"
           variant="black"
-          onPress={handleNavigateToFeedback}
+          onPress={handleSubmit(onCreateMeal)}
         />
       </S.CreateMealFormContainer>
     </S.CreateMealContainer>
