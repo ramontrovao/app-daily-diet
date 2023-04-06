@@ -6,11 +6,17 @@ import { HeaderBack } from "@components/HeaderBack";
 import { MealStatusCard } from "@components/MealStatusCard";
 import { Text } from "@components/Text";
 
-import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { useEffect, useState } from "react";
+import {
+  RouteProp,
+  useFocusEffect,
+  useNavigation,
+  useRoute,
+} from "@react-navigation/native";
+import { useCallback, useEffect, useState } from "react";
 import { MealDTO } from "@storage/meals/MealDTO";
 import { getMealById } from "@storage/meals/getMealById";
 import { Loading } from "@components/Loading";
+import { removeMeal } from "@storage/meals/removeMeal";
 
 interface MealResumeScreenParams {
   id: string;
@@ -47,9 +53,21 @@ export const MealResume = () => {
     setModalIsVisible(!modalIsVisible);
   };
 
-  useEffect(() => {
-    fetchMeal();
-  }, []);
+  const handleRemoveMeal = async () => {
+    try {
+      await removeMeal(id);
+
+      navigate("home");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchMeal();
+    }, [])
+  );
 
   return (
     <>
@@ -62,7 +80,7 @@ export const MealResume = () => {
             cancelText="Cancelar"
             confirmText="Sim"
             onCancel={handleToggleModal}
-            onConfirm={handleToggleModal}
+            onConfirm={handleRemoveMeal}
             visible={modalIsVisible}
           />
 

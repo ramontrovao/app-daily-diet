@@ -6,9 +6,14 @@ import { TextInput } from "@components/TextInput";
 import { RadioButton } from "@components/RadioButton";
 import { Button } from "@components/Button";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import {
+  RouteProp,
+  useFocusEffect,
+  useNavigation,
+  useRoute,
+} from "@react-navigation/native";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -17,6 +22,7 @@ import { createMeal } from "@storage/meals/createMeal";
 import { MealDTO } from "@storage/meals/MealDTO";
 import { getMealById } from "@storage/meals/getMealById";
 import { Loading } from "@components/Loading";
+import { updateMeal } from "@storage/meals/updateMeal";
 
 interface CreateEditMealScreenParams {
   id?: string;
@@ -27,16 +33,22 @@ export const CreateEditMeal = () => {
     useRoute<RouteProp<Record<string, CreateEditMealScreenParams>>>();
   const { navigate } = useNavigation();
   const [isLoading, setIsLoading] = useState(true);
-  const [meal, setMeal] = useState<MealDTO>({} as MealDTO);
   const [isOnDiet, setIsOnDiet] = useState(true);
 
   const fetchMeal = async () => {
     try {
-      const mealStoraged = await getMealById(params.id!);
+      setIsLoading(true);
+      const meal = await getMealById(params.id!);
 
-      setMeal(mealStoraged!);
+      setIsOnDiet(meal!.isOnDiet);
+      setValue("name", meal!.name);
+      setValue("description", meal!.description);
+      setValue("date", meal!.date);
+      setValue("hour", meal!.hour);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -83,20 +95,21 @@ export const CreateEditMeal = () => {
     }
   };
 
-  const onEditMeal = async () => {};
-
-  useEffect(() => {
-    if (params.id) {
-      fetchMeal();
-
-      setValue("name", meal.name);
-      setValue("description", meal.description);
-      setValue("date", meal.date);
-      setValue("hour", meal.hour);
+  const onEditMeal = async (data: validationSchemaType) => {
+    try {
+      await updateMeal(params.id!, { ...data, isOnDiet });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      navigate("meal-resume", { id: params.id! });
     }
+  };
 
-    setIsLoading(false);
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      params.id && fetchMeal();
+    }, [])
+  );
 
   return (
     <>
