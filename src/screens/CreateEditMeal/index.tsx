@@ -71,7 +71,7 @@ export const CreateEditMeal = () => {
             <Text
               content="Nome"
               color="GRAY_2"
-              fontSize="XSM"
+              fontSize="M"
               fontFamily="BOLD"
             />
 
@@ -80,10 +80,9 @@ export const CreateEditMeal = () => {
             {errors.name && (
               <Text
                 content={errors.name.message!}
-                color="RED_MID"
+                color="RED_DARK"
                 fontSize="M"
                 fontFamily="REGULAR"
-                align="center"
               />
             )}
           </S.CreateMealFormFieldsetContainer>
@@ -105,10 +104,9 @@ export const CreateEditMeal = () => {
             {errors.description && (
               <Text
                 content={errors.description.message!}
-                color="RED_MID"
+                color="RED_DARK"
                 fontSize="M"
                 fontFamily="REGULAR"
-                align="center"
               />
             )}
           </S.CreateMealFormFieldsetContainer>
@@ -139,18 +137,17 @@ export const CreateEditMeal = () => {
           {errors.date && (
             <Text
               content={errors.date.message!}
-              color="RED_MID"
-              fontSize="M"
+              color="RED_DARK"
+              fontSize="XSM"
               fontFamily="REGULAR"
-              align="center"
             />
           )}
 
           {errors.hour && (
             <Text
               content={errors.hour.message!}
-              color="RED_MID"
-              fontSize="M"
+              color="RED_DARK"
+              fontSize="XSM"
               fontFamily="REGULAR"
               align="center"
             />
