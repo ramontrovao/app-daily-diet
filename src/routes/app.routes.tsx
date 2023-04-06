@@ -14,7 +14,7 @@ export const AppRoutes = () => {
       <Screen name="home" component={Home} />
       <Screen name="statistics" component={Statistics} />
       <Screen name="create-meal" component={CreateEditMeal} />
-      <Screen name="edit-meal" component={CreateEditMeal} />
+      <Screen name="create-edit-meal" component={CreateEditMeal} />
       <Screen name="meal-resume" component={MealResume} />
       <Screen name="feedback" component={Feedback} />
     </Navigator>

@@ -1,6 +1,10 @@
 import styled from "styled-components/native";
 
-export const HomeContainer = styled.ScrollView`
+export const HomeContainerScroll = styled.ScrollView`
+  flex: 1;
+`;
+
+export const HomeContainer = styled.View`
   padding: 35px 15px;
 
   flex: 1;

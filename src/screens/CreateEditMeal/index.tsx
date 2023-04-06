@@ -13,16 +13,23 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import * as z from "zod";
+import { createMeal } from "@storage/meals/createMeal";
 
 export const CreateEditMeal = () => {
   const { navigate } = useNavigation();
-  const [dietOptionActive, setDietOptionActive] = useState("Sim");
+  const [isOnDiet, setIsOnDiet] = useState(true);
 
   const validationSchema = z.object({
-    name: z.string().min(1),
-    description: z.string().min(1),
-    date: z.string().min(1),
-    hour: z.string().min(1),
+    name: z.string().min(1, { message: "Escreva um nome válido" }),
+    description: z.string().min(1, { message: "Escreva uma descrição válida" }),
+    date: z
+      .string()
+      .regex(/^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/\d{4}$/, {
+        message: "O padrão não corresponde a DD/MM/AAAA",
+      }),
+    hour: z.string().regex(/^([0-1][0-9]|2[0-3]):[0-5][0-9]$/, {
+      message: "O padrão não corresponde ao formato HH:MM",
+    }),
   });
 
   type validationSchemaType = z.infer<typeof validationSchema>;
@@ -36,14 +43,22 @@ export const CreateEditMeal = () => {
   });
 
   const handleChangeDietOption = () => {
-    setDietOptionActive(dietOptionActive === "Sim" ? "Não" : "Sim");
+    setIsOnDiet(!isOnDiet);
   };
 
-  const onCreateMeal = async (data: validationSchemaType) => {
-    console.log(data);
-    console.log(errors);
-
-    navigate("feedback");
+  const onCreateMeal = async ({
+    name,
+    description,
+    date,
+    hour,
+  }: validationSchemaType) => {
+    try {
+      await createMeal({ name, description, date, hour, isOnDiet });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      navigate("feedback", { isOnDiet: isOnDiet });
+    }
   };
 
   return (
@@ -155,7 +170,7 @@ export const CreateEditMeal = () => {
               icon="brightness-1"
               text="Sim"
               variant="green"
-              isActive={dietOptionActive === "Sim"}
+              isActive={isOnDiet}
               onPress={handleChangeDietOption}
             />
 
@@ -163,7 +178,7 @@ export const CreateEditMeal = () => {
               icon="brightness-1"
               text="Não"
               variant="red"
-              isActive={dietOptionActive === "Não"}
+              isActive={!isOnDiet}
               onPress={handleChangeDietOption}
             />
           </S.CreateMealFiedlsetWrapperContainer>
