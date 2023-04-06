@@ -5,13 +5,13 @@ import { HeaderProfile } from "@components/HeaderProfile";
 import { MealCard } from "@components/MealCard";
 import { Percent } from "@components/Percent";
 import { Text } from "@components/Text";
+import { Loading } from "@components/Loading";
 
 import { getAllMeals } from "@storage/meals/getAllMeals";
 import { MealDTO } from "@storage/meals/MealDTO";
 
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { useState, useCallback } from "react";
-import { Loading } from "@components/Loading";
 
 export const Home = () => {
   const { navigate } = useNavigation();
@@ -42,11 +42,11 @@ export const Home = () => {
   };
 
   const handleNavigateToCreateMeal = () => {
-    navigate("create-edit-meal");
+    navigate("create-edit-meal", {});
   };
 
-  const handleNavigateToMealResume = () => {
-    navigate("meal-resume");
+  const handleNavigateToMealResume = (id: string) => {
+    navigate("meal-resume", { id });
   };
 
   const filterMealsByDate = (date: string) => {
@@ -100,6 +100,7 @@ export const Home = () => {
                     mealHour={hour}
                     variant={isOnDiet ? "green" : "red"}
                     key={id}
+                    onPress={() => handleNavigateToMealResume(id!)}
                   />
                 ))}
               </>

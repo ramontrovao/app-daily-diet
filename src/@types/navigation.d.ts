@@ -3,11 +3,12 @@ export declare global {
     interface RootParamList {
       home: undefined;
       statistics: undefined;
-      "create-edit-meal": undefined;
-      "edit-meal": {
+      "create-edit-meal": {
+        id?: string;
+      };
+      "meal-resume": {
         id: string;
       };
-      "meal-resume": undefined;
       feedback: {
         isOnDiet: boolean;
       };

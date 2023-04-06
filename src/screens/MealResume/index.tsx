@@ -6,87 +6,123 @@ import { HeaderBack } from "@components/HeaderBack";
 import { MealStatusCard } from "@components/MealStatusCard";
 import { Text } from "@components/Text";
 
-import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { useEffect, useState } from "react";
+import { MealDTO } from "@storage/meals/MealDTO";
+import { getMealById } from "@storage/meals/getMealById";
+import { Loading } from "@components/Loading";
+
+interface MealResumeScreenParams {
+  id: string;
+}
 
 export const MealResume = () => {
+  const {
+    params: { id },
+  } = useRoute<RouteProp<Record<string, MealResumeScreenParams>>>();
   const { navigate } = useNavigation();
+  const [isLoading, setIsLoading] = useState(true);
+  const [meal, setMeal] = useState<MealDTO>({} as MealDTO);
   const [modalIsVisible, setModalIsVisible] = useState(false);
 
-  const handleNavigateToEditMeal = () => {
-    navigate("edit-meal");
+  const fetchMeal = async () => {
+    try {
+      setIsLoading(true);
+
+      const mealStoraged = await getMealById(id);
+
+      setMeal(mealStoraged!);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleEditMeal = () => {
+    navigate("create-edit-meal", { id });
   };
 
   const handleToggleModal = () => {
     setModalIsVisible(!modalIsVisible);
   };
 
+  useEffect(() => {
+    fetchMeal();
+  }, []);
+
   return (
     <>
-      <Confirm
-        title="Deseja realmente excluir o registro da refeição?"
-        cancelText="Cancelar"
-        confirmText="Sim"
-        onCancel={handleToggleModal}
-        onConfirm={handleToggleModal}
-        visible={modalIsVisible}
-      />
+      {isLoading && <Loading />}
 
-      <S.MealResumeContainer>
-        <HeaderBack title="Refeição" variant="GREEN_LIGHT" />
+      {!isLoading && (
+        <>
+          <Confirm
+            title="Deseja realmente excluir o registro da refeição?"
+            cancelText="Cancelar"
+            confirmText="Sim"
+            onCancel={handleToggleModal}
+            onConfirm={handleToggleModal}
+            visible={modalIsVisible}
+          />
 
-        <S.MealResumeContentContainer>
-          <S.MealResumeContentTopContainer>
-            <S.MealResumeTitleContainer>
-              <Text
-                content="Sanduíche"
-                fontSize="L"
-                fontFamily="BOLD"
-                color="BLACK"
-              />
+          <S.MealResumeContainer>
+            <HeaderBack title="Refeição" variant="GREEN_LIGHT" />
 
-              <Text
-                content="Sanduíche de pão integral com atum e salada de alface e tomate"
-                fontSize="M"
-                fontFamily="REGULAR"
-                color="GRAY_2"
-              />
-            </S.MealResumeTitleContainer>
+            <S.MealResumeContentContainer>
+              <S.MealResumeContentTopContainer>
+                <S.MealResumeTitleContainer>
+                  <Text
+                    content={meal.name}
+                    fontSize="L"
+                    fontFamily="BOLD"
+                    color="BLACK"
+                  />
 
-            <S.MealResumeDescriptionContainer>
-              <Text
-                content="Data e hora"
-                fontSize="XSM"
-                fontFamily="BOLD"
-                color="BLACK"
-              />
+                  <Text
+                    content={meal.description}
+                    fontSize="M"
+                    fontFamily="REGULAR"
+                    color="GRAY_2"
+                  />
+                </S.MealResumeTitleContainer>
 
-              <Text
-                content="03/04/2023 às 10:14"
-                fontSize="M"
-                fontFamily="REGULAR"
-                color="GRAY_2"
-              />
+                <S.MealResumeDescriptionContainer>
+                  <Text
+                    content="Data e hora"
+                    fontSize="XSM"
+                    fontFamily="BOLD"
+                    color="BLACK"
+                  />
 
-              <MealStatusCard isHealthy={true} />
-            </S.MealResumeDescriptionContainer>
-          </S.MealResumeContentTopContainer>
+                  <Text
+                    content={`${meal.date} às ${meal.hour}`}
+                    fontSize="M"
+                    fontFamily="REGULAR"
+                    color="GRAY_2"
+                  />
 
-          <S.MealResumeBottomContainer>
-            <Button
-              text="Editar refeição"
-              icon="edit"
-              onPress={handleNavigateToEditMeal}
-            />
-            <Button
-              text="Excluir refeição"
-              icon="delete"
-              variant="white"
-              onPress={handleToggleModal}
-            />
-          </S.MealResumeBottomContainer>
-        </S.MealResumeContentContainer>
-      </S.MealResumeContainer>
+                  <MealStatusCard isHealthy={meal.isOnDiet} />
+                </S.MealResumeDescriptionContainer>
+              </S.MealResumeContentTopContainer>
+
+              <S.MealResumeBottomContainer>
+                <Button
+                  text="Editar refeição"
+                  icon="edit"
+                  onPress={handleEditMeal}
+                />
+                <Button
+                  text="Excluir refeição"
+                  icon="delete"
+                  variant="white"
+                  onPress={handleToggleModal}
+                />
+              </S.MealResumeBottomContainer>
+            </S.MealResumeContentContainer>
+          </S.MealResumeContainer>
+        </>
+      )}
     </>
   );
 };
