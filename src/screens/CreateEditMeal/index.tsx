@@ -107,7 +107,7 @@ export const CreateEditMeal = () => {
 
   useFocusEffect(
     useCallback(() => {
-      params.id && fetchMeal();
+      params.id ? fetchMeal() : setIsLoading(false);
     }, [])
   );
 

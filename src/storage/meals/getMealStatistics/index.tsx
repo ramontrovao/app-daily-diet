@@ -22,6 +22,7 @@ export const getMealStatistics = async () => {
 
     return {
       mealsRegistered: mealsStoraged.length,
+      mealsOnDietPercentage: (mealsOnDiet.length / mealsStoraged.length) * 100,
       mealsOnDiet: mealsOnDiet.length,
       mealsNotOnDiet: mealsStoraged.length - mealsOnDiet.length,
       mealsBestSequence,

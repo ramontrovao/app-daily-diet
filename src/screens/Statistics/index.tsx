@@ -10,6 +10,7 @@ import { Loading } from "@components/Loading";
 
 type StatisticsType = {
   mealsRegistered: number;
+  mealsOnDietPercentage: number;
   mealsOnDiet: number;
   mealsNotOnDiet: number;
   mealsBestSequence: number;
@@ -44,7 +45,10 @@ export const Statistics = () => {
       {isLoading && <Loading />}
       {!isLoading && (
         <S.StatisticsContainer>
-          <HeaderMeal />
+          <HeaderMeal
+            percentage={`${statistics.mealsOnDietPercentage}%`}
+            variant={statistics.mealsOnDietPercentage >= 50 ? "green" : "red"}
+          />
           <S.StatisticsInformationContainer>
             <Text
               content="Estatísticas gerais"

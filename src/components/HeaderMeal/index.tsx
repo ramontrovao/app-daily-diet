@@ -7,7 +7,12 @@ import { HeaderMealDTO } from "./HeaderMealDTO";
 
 import { useNavigation } from "@react-navigation/native";
 
-export const HeaderMeal = ({ variant = "green" }: HeaderMealDTO) => {
+export type HeaderMealProps = { percentage: string } & HeaderMealDTO;
+
+export const HeaderMeal = ({
+  percentage,
+  variant = "green",
+}: HeaderMealProps) => {
   const { goBack } = useNavigation();
 
   const handleGoBack = () => {
@@ -28,7 +33,7 @@ export const HeaderMeal = ({ variant = "green" }: HeaderMealDTO) => {
 
       <S.MealTitleContainer>
         <Text
-          content="90,86%"
+          content={percentage}
           color="BLACK"
           fontFamily="BOLD"
           fontSize="XL"
