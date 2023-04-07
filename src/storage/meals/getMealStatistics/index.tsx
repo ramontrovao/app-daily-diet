@@ -4,6 +4,8 @@ export const getMealStatistics = async () => {
   try {
     const mealsStoraged = await getAllMeals();
     const mealsOnDiet = mealsStoraged.filter((meal) => meal.isOnDiet === true);
+    const mealsOnDietPercentage =
+      (mealsOnDiet.length / mealsStoraged.length) * 100;
     const mealsBestSequence = mealsStoraged.reduce(
       (acc, meal) => {
         if (meal.isOnDiet) {
@@ -22,7 +24,9 @@ export const getMealStatistics = async () => {
 
     return {
       mealsRegistered: mealsStoraged.length,
-      mealsOnDietPercentage: (mealsOnDiet.length / mealsStoraged.length) * 100,
+      mealsOnDietPercentage: isNaN(mealsOnDietPercentage)
+        ? 0
+        : mealsOnDietPercentage,
       mealsOnDiet: mealsOnDiet.length,
       mealsNotOnDiet: mealsStoraged.length - mealsOnDiet.length,
       mealsBestSequence,

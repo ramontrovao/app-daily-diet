@@ -12,17 +12,32 @@ import { MealDTO } from "@storage/meals/MealDTO";
 
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { useState, useCallback } from "react";
+import { getMealStatistics } from "@storage/meals/getMealStatistics";
 
 export const Home = () => {
   const { navigate } = useNavigation();
 
   const [isLoading, setIsLoading] = useState(true);
+  const [mealsOnDietPercentage, setMealsOnDietPercentage] = useState(0);
   const [meals, setMeals] = useState<MealDTO[]>([]);
 
   const allDates = meals.map((meal) => meal.date);
   const allDatesWithoutRepetition = allDates.filter((date, index) => {
     return allDates.indexOf(date) === index;
   });
+
+  const fetchStatistics = async () => {
+    try {
+      setIsLoading(true);
+      const { mealsOnDietPercentage } = await getMealStatistics();
+
+      setMealsOnDietPercentage(mealsOnDietPercentage);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const fetchMeals = async () => {
     try {
@@ -57,6 +72,7 @@ export const Home = () => {
 
   useFocusEffect(
     useCallback(() => {
+      fetchStatistics();
       fetchMeals();
     }, [])
   );
@@ -65,7 +81,14 @@ export const Home = () => {
     <S.HomeContainerScroll>
       <S.HomeContainer>
         <HeaderProfile />
-        <Percent variant="positive" onPress={handleNavigateToStatistics} />
+        {isLoading && <Loading />}
+        {!isLoading && (
+          <Percent
+            percent={`${mealsOnDietPercentage}%`}
+            variant={mealsOnDietPercentage >= 50 ? "positive" : "negative"}
+            onPress={handleNavigateToStatistics}
+          />
+        )}
 
         <S.MealsContainer>
           <Text
@@ -83,15 +106,14 @@ export const Home = () => {
         </S.MealsContainer>
 
         {!isLoading && (
-          <S.DailyContainer>
+          <>
             {allDatesWithoutRepetition.map((date) => (
-              <>
+              <S.DailyContainer key={date}>
                 <Text
                   color="BLACK"
                   fontSize="XM"
                   fontFamily="BOLD"
                   content={date.replace(/\//g, ".")}
-                  key={date}
                 />
 
                 {filterMealsByDate(date).map(({ name, hour, isOnDiet, id }) => (
@@ -103,9 +125,9 @@ export const Home = () => {
                     onPress={() => handleNavigateToMealResume(id!)}
                   />
                 ))}
-              </>
+              </S.DailyContainer>
             ))}
-          </S.DailyContainer>
+          </>
         )}
 
         {isLoading && <Loading />}

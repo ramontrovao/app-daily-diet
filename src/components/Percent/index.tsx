@@ -6,10 +6,15 @@ import { Text } from "@components/Text";
 import { TouchableOpacityProps } from "react-native";
 
 type PercentProps = {
+  percent: string;
   variant?: "positive" | "negative";
 } & TouchableOpacityProps;
 
-export const Percent = ({ variant = "positive", ...rest }: PercentProps) => {
+export const Percent = ({
+  percent,
+  variant = "positive",
+  ...rest
+}: PercentProps) => {
   return (
     <S.PercentContainer variant={variant} {...rest}>
       <S.HeaderPercentContainer>
@@ -23,7 +28,7 @@ export const Percent = ({ variant = "positive", ...rest }: PercentProps) => {
       </S.HeaderPercentContainer>
 
       <Text
-        content="90,86%"
+        content={percent}
         color="BLACK"
         fontFamily="BOLD"
         fontSize="XL"

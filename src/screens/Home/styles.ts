@@ -8,6 +8,7 @@ export const HomeContainer = styled.View`
   padding: 35px 15px;
 
   flex: 1;
+  min-height: 700px;
 
   background: ${({ theme: { COLORS } }) => COLORS.GRAY_7};
 `;
