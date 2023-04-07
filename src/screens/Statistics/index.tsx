@@ -3,8 +3,14 @@ import * as S from "./styles";
 import { HeaderMeal } from "@components/HeaderMeal";
 import { Text } from "@components/Text";
 import { InfoCard } from "@components/InfoCard";
+import { useState } from "react";
+
+type StatisticsType = {};
 
 export const Statistics = () => {
+  const [statistics, setStatistics] = useState({});
+
+  useEff;
   return (
     <S.StatisticsContainer>
       <HeaderMeal />
