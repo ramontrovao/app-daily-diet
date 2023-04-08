@@ -94,10 +94,11 @@ export const CreateEditMeal = () => {
       navigate("feedback", { isOnDiet: isOnDiet });
     } catch (error) {
       if (error instanceof AppException) {
-        Alert.alert("ERRO", error.message);
-      } else {
-        Alert.alert("ERRO", "Ocorreu um erro inesperado! :(");
+        return Alert.alert("ERRO", error.message);
       }
+
+      Alert.alert("ERRO", "Ocorreu um erro inesperado! :(");
+      console.log(error);
     }
   };
 
@@ -105,6 +106,11 @@ export const CreateEditMeal = () => {
     try {
       await updateMeal(params.id!, { ...data, isOnDiet });
     } catch (error) {
+      if (error instanceof AppException) {
+        return Alert.alert("ERRO", error.message);
+      }
+
+      Alert.alert("ERRO", "Ocorreu um erro inesperado! :(");
       console.log(error);
     } finally {
       navigate("meal-resume", { id: params.id! });
