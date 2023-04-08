@@ -23,6 +23,8 @@ import { MealDTO } from "@storage/meals/MealDTO";
 import { getMealById } from "@storage/meals/getMealById";
 import { Loading } from "@components/Loading";
 import { updateMeal } from "@storage/meals/updateMeal";
+import { AppException } from "@utils/AppException";
+import { Alert } from "react-native/Libraries/Alert/Alert";
 
 interface CreateEditMealScreenParams {
   id?: string;
@@ -88,10 +90,14 @@ export const CreateEditMeal = () => {
   }: validationSchemaType) => {
     try {
       await createMeal({ name, description, date, hour, isOnDiet });
-    } catch (error) {
-      console.log(error);
-    } finally {
+
       navigate("feedback", { isOnDiet: isOnDiet });
+    } catch (error) {
+      if (error instanceof AppException) {
+        Alert.alert("ERRO", error.message);
+      } else {
+        Alert.alert("ERRO", "Ocorreu um erro inesperado! :(");
+      }
     }
   };
 

@@ -36,6 +36,7 @@ export const TextInput = ({
       textAlignVertical={textAlignVertical}
       value={field.value}
       onChangeText={field.onChange}
+      selectionColor="#639339"
       {...rest}
     />
   );

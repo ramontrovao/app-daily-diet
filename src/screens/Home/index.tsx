@@ -9,10 +9,10 @@ import { Loading } from "@components/Loading";
 
 import { getAllMeals } from "@storage/meals/getAllMeals";
 import { MealDTO } from "@storage/meals/MealDTO";
+import { getMealStatistics } from "@storage/meals/getMealStatistics";
 
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { useState, useCallback } from "react";
-import { getMealStatistics } from "@storage/meals/getMealStatistics";
 
 export const Home = () => {
   const { navigate } = useNavigation();
@@ -78,35 +78,33 @@ export const Home = () => {
   );
 
   return (
-    <S.HomeContainerScroll>
-      <S.HomeContainer>
-        <HeaderProfile />
-        {isLoading && <Loading />}
-        {!isLoading && (
-          <Percent
-            percent={`${mealsOnDietPercentage}%`}
-            variant={mealsOnDietPercentage >= 50 ? "positive" : "negative"}
-            onPress={handleNavigateToStatistics}
-          />
-        )}
+    <>
+      {isLoading && <Loading />}
+      {!isLoading && (
+        <S.HomeContainerScroll>
+          <S.HomeContainer>
+            <HeaderProfile />
+            <Percent
+              percent={`${mealsOnDietPercentage}%`}
+              variant={mealsOnDietPercentage >= 50 ? "positive" : "negative"}
+              onPress={handleNavigateToStatistics}
+            />
 
-        <S.MealsContainer>
-          <Text
-            color="GRAY_1"
-            fontSize="M"
-            fontFamily="REGULAR"
-            content="Refeições"
-          />
+            <S.MealsContainer>
+              <Text
+                color="GRAY_1"
+                fontSize="M"
+                fontFamily="REGULAR"
+                content="Refeições"
+              />
 
-          <Button
-            icon="add"
-            text="Nova refeição"
-            onPress={handleNavigateToCreateMeal}
-          />
-        </S.MealsContainer>
+              <Button
+                icon="add"
+                text="Nova refeição"
+                onPress={handleNavigateToCreateMeal}
+              />
+            </S.MealsContainer>
 
-        {!isLoading && (
-          <>
             {allDatesWithoutRepetition.map((date) => (
               <S.DailyContainer key={date}>
                 <Text
@@ -127,11 +125,9 @@ export const Home = () => {
                 ))}
               </S.DailyContainer>
             ))}
-          </>
-        )}
-
-        {isLoading && <Loading />}
-      </S.HomeContainer>
-    </S.HomeContainerScroll>
+          </S.HomeContainer>
+        </S.HomeContainerScroll>
+      )}
+    </>
   );
 };
