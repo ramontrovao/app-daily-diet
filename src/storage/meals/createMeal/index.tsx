@@ -1,3 +1,4 @@
+import "react-native-get-random-values";
 import { MEALS_COLLECTION } from "@storage/config";
 
 import { getAllMeals } from "../getAllMeals";
@@ -5,8 +6,7 @@ import { getAllMeals } from "../getAllMeals";
 import { MealDTO } from "../MealDTO";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import "react-native-get-random-values";
-import { v4 as uuidv4 } from "uuid";
+import generateUUID from "react-native-uuid";
 import { AppException } from "@utils/AppException";
 
 export const createMeal = async ({
@@ -18,7 +18,7 @@ export const createMeal = async ({
 }: MealDTO): Promise<void> => {
   try {
     const newMeal = {
-      id: uuidv4(),
+      id: generateUUID.v4() as string,
       name,
       description,
       date,

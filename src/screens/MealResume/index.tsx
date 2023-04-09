@@ -85,7 +85,10 @@ export const MealResume = () => {
           />
 
           <S.MealResumeContainer>
-            <HeaderBack title="Refeição" variant="GREEN_LIGHT" />
+            <HeaderBack
+              title="Refeição"
+              variant={meal.isOnDiet ? "GREEN_LIGHT" : "RED_LIGHT"}
+            />
 
             <S.MealResumeContentContainer>
               <S.MealResumeContentTopContainer>

@@ -2,10 +2,10 @@ import * as S from "./styles";
 
 import { TextInputDTO } from "./TextInputDTO";
 
-import { TextInputProps as TextInputType } from "react-native";
-
 import { useController } from "react-hook-form";
 import { Control } from "react-hook-form/dist/types";
+
+import { TextInputProps as TextInputType } from "react-native";
 
 type TextInputProps = {
   name: string;

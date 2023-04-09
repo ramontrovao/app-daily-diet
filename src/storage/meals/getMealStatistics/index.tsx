@@ -26,7 +26,7 @@ export const getMealStatistics = async () => {
       mealsRegistered: mealsStoraged.length,
       mealsOnDietPercentage: isNaN(mealsOnDietPercentage)
         ? 0
-        : mealsOnDietPercentage,
+        : mealsOnDietPercentage.toFixed(2),
       mealsOnDiet: mealsOnDiet.length,
       mealsNotOnDiet: mealsStoraged.length - mealsOnDiet.length,
       mealsBestSequence,

@@ -19,12 +19,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import * as z from "zod";
 import { createMeal } from "@storage/meals/createMeal";
-import { MealDTO } from "@storage/meals/MealDTO";
 import { getMealById } from "@storage/meals/getMealById";
 import { Loading } from "@components/Loading";
 import { updateMeal } from "@storage/meals/updateMeal";
 import { AppException } from "@utils/AppException";
-import { Alert } from "react-native/Libraries/Alert/Alert";
+import { Alert } from "react-native";
 
 interface CreateEditMealScreenParams {
   id?: string;
@@ -88,18 +87,20 @@ export const CreateEditMeal = () => {
     date,
     hour,
   }: validationSchemaType) => {
-    try {
-      await createMeal({ name, description, date, hour, isOnDiet });
+    // try {
 
-      navigate("feedback", { isOnDiet: isOnDiet });
-    } catch (error) {
-      if (error instanceof AppException) {
-        return Alert.alert("ERRO", error.message);
-      }
+    // } catch (error) {
+    //   if (error instanceof AppException) {
+    //     return Alert.alert("ERRO", error.message);
+    //   }
 
-      Alert.alert("ERRO", "Ocorreu um erro inesperado! :(");
-      console.log(error);
-    }
+    //   Alert.alert("ERRO", "Ocorreu um erro inesperado! :(");
+    //   console.log(error);
+    // }
+
+    await createMeal({ name, description, date, hour, isOnDiet });
+
+    navigate("feedback", { isOnDiet: isOnDiet });
   };
 
   const onEditMeal = async (data: validationSchemaType) => {
@@ -185,7 +186,12 @@ export const CreateEditMeal = () => {
                     fontFamily="BOLD"
                   />
 
-                  <TextInput width={135} name="date" control={control} />
+                  <TextInput
+                    width={135}
+                    name="date"
+                    control={control}
+                    maxLength={10}
+                  />
                 </S.CreateMealFormFieldsetContainer>
 
                 <S.CreateMealFormFieldsetContainer>
@@ -196,7 +202,12 @@ export const CreateEditMeal = () => {
                     fontFamily="BOLD"
                   />
 
-                  <TextInput width={135} name="hour" control={control} />
+                  <TextInput
+                    width={135}
+                    name="hour"
+                    control={control}
+                    maxLength={5}
+                  />
                 </S.CreateMealFormFieldsetContainer>
               </S.CreateMealFiedlsetWrapperContainer>
               {errors.date && (
