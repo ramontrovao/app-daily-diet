@@ -27,13 +27,6 @@ export const createMeal = async ({
     };
 
     const mealsStoraged = await getAllMeals();
-    const mealAlreadyExists = mealsStoraged.includes(newMeal);
-
-    if (mealAlreadyExists) {
-      throw new AppException(
-        "Essa refeição já está cadastrada em nosso banco de dados!"
-      );
-    }
 
     const mealsUpdated = [...mealsStoraged, newMeal];
 
