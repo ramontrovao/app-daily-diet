@@ -87,18 +87,16 @@ export const CreateEditMeal = () => {
     date,
     hour,
   }: validationSchemaType) => {
-    // try {
+    try { 
+      await createMeal({ name, description, date, hour, isOnDiet });
+    } catch (error) {
+      if (error instanceof AppException) {
+        return Alert.alert("ERRO", error.message);
+      }
 
-    // } catch (error) {
-    //   if (error instanceof AppException) {
-    //     return Alert.alert("ERRO", error.message);
-    //   }
-
-    //   Alert.alert("ERRO", "Ocorreu um erro inesperado! :(");
-    //   console.log(error);
-    // }
-
-    await createMeal({ name, description, date, hour, isOnDiet });
+      Alert.alert("ERRO", "Ocorreu um erro inesperado! :(");
+      console.log(error);
+    }
 
     navigate("feedback", { isOnDiet: isOnDiet });
   };
